@@ -25,7 +25,7 @@ pub async fn register(input: Json<UserInput>) -> Json<UserInput> {
 }
 
 #[post("/u/login")]
-pub async fn login(input: Json<UserInput>) -> String {
+pub async fn login(input: Json<UserInput>) -> Json<UserInput> {
     println!("=== registering {:?} ===", input);
 
     // TODO: validate input
