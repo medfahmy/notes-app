@@ -1,19 +1,15 @@
-mod user;
-mod note;
-
 use std::net::SocketAddr;
 use axum::routing::{get, post};
 use axum::{Router, Server};
+use server::{user, note};
 
 #[tokio::main]
 async fn main() {
-    tracing_subscriber::fmt::init();
-
     let app = Router::new()
-        .route("/users", post(user::create_user));
+        .route("/users", get(user::get_users).post(user::create_user))
+        .route("/notes", get(note::get_notes).post(note::create_note));
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
-    tracing::debug!("listening on {}", addr);
 
     Server::bind(&addr)
         .serve(app.into_make_service())

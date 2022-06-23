@@ -4,7 +4,7 @@ dist
 yarn.lock
 .DS_Store
 /build
-/.svelte-kit
+.svelte-kit
 /package
 .env
 .env.*
